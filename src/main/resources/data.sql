@@ -1,0 +1,2 @@
+Insert into tbl_tecnico (id, id_tecnico, nombre, apellido) Values (1, '12525', 'Daniel', 'Gomez');
+Insert into tbl_servicio (id, id_servicio, descripcion, estado) Values(1, '1234', 'Esto es una descripcion', 'Created');
