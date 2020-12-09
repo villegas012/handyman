@@ -7,10 +7,12 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+
 @Entity
 @Table(name = "tbl_servicio")
 @Getter
 @Setter
+@EqualsAndHashCode
 @ToString
 @AllArgsConstructor
 public class Servicio {
@@ -22,9 +24,12 @@ public class Servicio {
     private String idServicio;
     private String descripcion;
     private String estado;
-    @ManyToMany(targetEntity = Tecnico.class)
-    private List<Tecnico> tecnicos;
 
+    @Column(name = "fecha_inicio")
+    private Long fechaInicio;
+
+    @Column(name = "fecha_fin")
+    private Long fechaFin;
 
     @JsonCreator
     public Servicio() {}

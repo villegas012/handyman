@@ -1,6 +1,7 @@
 package co.com.ias.handyman.controller;
 
 import co.com.ias.handyman.domain.Servicio;
+import co.com.ias.handyman.domain.Tecnico;
 import co.com.ias.handyman.model.ErrorMessage;
 import co.com.ias.handyman.services.ServicioServicio;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
 @RestController
 @RequestMapping(value = "/servicio")
@@ -28,6 +30,7 @@ public class ServicioControlador {
         this.servicioServicio = servicioServicio;
     }
 
+
     @GetMapping
     public ResponseEntity<List<Servicio>> listaServicios() {
         List<Servicio> servicios = servicioServicio.obtenerTodoServicios();
@@ -35,6 +38,15 @@ public class ServicioControlador {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(servicios);
+    }
+
+    @GetMapping(value = "/{idServicio}")
+    public ResponseEntity<Servicio> obtenerUnServicio(@PathVariable("idServicio") String idServicio){
+        Servicio servicioBD = servicioServicio.obtenerUnServicio(idServicio);
+        if(servicioBD == null){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(servicioBD);
     }
 
     @PostMapping
@@ -45,6 +57,8 @@ public class ServicioControlador {
         Servicio servicioBD = servicioServicio.guardarServicio(servicio);
         return ResponseEntity.ok(servicioBD);
     }
+
+
 
     private String formatMessage(BindingResult result) {
         List<Map<String, String>> messages = result.getFieldErrors().stream()

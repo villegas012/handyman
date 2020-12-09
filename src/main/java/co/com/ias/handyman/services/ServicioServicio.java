@@ -1,6 +1,7 @@
 package co.com.ias.handyman.services;
 
 import co.com.ias.handyman.domain.Servicio;
+import co.com.ias.handyman.domain.Tecnico;
 import co.com.ias.handyman.repository.ServicioRepositorio;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,9 @@ public class ServicioServicio {
         servicio.setEstado("Creado");
         return servicioRepositorio.save(servicio);
     }
+
+    public Servicio obtenerUnServicio(String idServicio){
+        return servicioRepositorio.findByIdServicio(idServicio);
+    }
 }
+

@@ -11,6 +11,7 @@ import java.util.Set;
 @Table(name = "tbl_tecnico")
 @Getter
 @Setter
+@EqualsAndHashCode
 @ToString
 @AllArgsConstructor
 public class Tecnico {
